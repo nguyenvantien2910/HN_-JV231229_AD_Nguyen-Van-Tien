@@ -47,14 +47,21 @@ public class Exam_Advance_3 {
             System.err.println(ShopMessage.EMTY_LIST);
         } else {
             String firstCutomer = customerName.poll();
-            System.out.printf("Khách hàng đầu tiên trong danh sách là : %s\n",firstCutomer);
+            if (firstCutomer != null) {
+                System.out.printf("Khách hàng đầu tiên trong danh sách là : %s\n",firstCutomer);
+            } else {
+                System.err.println(ShopMessage.EMTY_LIST);
+            }
         }
     }
 
     private static void inputCustomerName() {
         System.out.println("Nhập tên khách hàng : ");
         String inputName = InputMethod.getString();
-        customerName.offer(inputName);
-        System.out.println(ShopMessage.ADD_NEW_SUCESS);
+        if (customerName.offer(inputName)) {
+            System.out.println(ShopMessage.ADD_NEW_SUCESS);
+        } else {
+            System.err.println(ShopMessage.FULL_LIST);
+        }
     }
 }
