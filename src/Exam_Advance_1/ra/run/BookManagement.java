@@ -8,7 +8,6 @@ import Exam_Advance_1.ra.config.ShopMessage;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Scanner;
 
 public class BookManagement {
     public static final List<Author> authorList = new ArrayList<>();
@@ -22,7 +21,6 @@ public class BookManagement {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         byte choice;
         boolean isExit = false;
 
@@ -42,7 +40,7 @@ public class BookManagement {
                     addNewAuthor();
                     break;
                 case 2:
-                    addNewBook(authorList);
+                    addNewBook();
                     break;
                 case 3:
                     sortBookByExportPrice();
@@ -69,7 +67,7 @@ public class BookManagement {
             if (filterListBookByAuthorName.isEmpty()) {
                 System.err.println(ShopMessage.NAME_NOT_FOUND);
             } else {
-                filterListBookByAuthorName.forEach(book -> book.displayData());
+                filterListBookByAuthorName.forEach(Book::displayData);
                 break;
             }
         } while (true);
@@ -83,12 +81,12 @@ public class BookManagement {
            List<Book> sortedList = bookList.stream()
                    .sorted(Comparator.comparing(Book::getExportPrice))
                    .toList();
-           sortedList.forEach(product -> product.displayData());
+           sortedList.forEach(Book::displayData);
        }
     }
 
-    private static void addNewBook(List<Author> authorList) {
-        System.out.printf("Nhập số lượng sách muốn thêm mới :");
+    private static void addNewBook() {
+        System.out.println("Nhập số lượng sách muốn thêm mới :");
         byte addNum = InputMethod.getByte();
         for (int i = 0; i < addNum; i++) {
             Book book =new Book();
@@ -100,7 +98,7 @@ public class BookManagement {
     }
 
     private static void addNewAuthor() {
-        System.out.printf("Nhập số lượng tác giả muốn thêm mới :");
+        System.out.println("Nhập số lượng tác giả muốn thêm mới :");
         byte addNum = InputMethod.getByte();
         for (int i = 0; i < addNum; i++) {
             Author author = new Author();

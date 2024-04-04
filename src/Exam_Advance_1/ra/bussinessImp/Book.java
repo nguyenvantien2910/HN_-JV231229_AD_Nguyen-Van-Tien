@@ -4,8 +4,6 @@ import Exam_Advance_1.ra.bussiness.IShop;
 import Exam_Advance_1.ra.config.InputMethod;
 import Exam_Advance_1.ra.config.ShopMessage;
 
-import java.util.List;
-
 import static Exam_Advance_1.ra.run.BookManagement.authorList;
 
 public class Book implements IShop {
@@ -112,7 +110,7 @@ public class Book implements IShop {
         this.bookName = inputBookName();
         this.title = inputBookTitle();
         this.numberOfPages = inputNumberOfPage();
-        this.author = selectAuthor(authorList);
+        this.author = selectAuthor();
         this.importPrice = inputImportPrice();
         this.exportPrice = this.importPrice * RATE;
         this.quantity = inputQuantity();
@@ -134,7 +132,7 @@ public class Book implements IShop {
         return InputMethod.getFloat();
     }
 
-    private Author selectAuthor(List<Author> authorList) {
+    private Author selectAuthor() {
         if (authorList.isEmpty()) {
             System.err.println(ShopMessage.EMTY_LIST);
             return null;
